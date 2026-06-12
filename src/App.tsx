@@ -17,7 +17,7 @@ import { Specialty, Doctor } from './types';
 import HERO_IMAGE from './assets/images/ortho_hero_1781287848853.jpg';
 import SPORTS_IMAGE from './assets/images/ortho_sports_1781287864452.jpg';
 
-// Subcomponents
+export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSpecialtyPreset, setModalSpecialtyPreset] = useState('');
@@ -274,7 +274,7 @@ import SPORTS_IMAGE from './assets/images/ortho_sports_1781287864452.jpg';
               {/* Image Frame with soft organic frame masking & luxury drop shadows */}
               <div className="relative w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border border-white/40 transform hover:-rotate-1 hover:scale-101 transition-all duration-500">
                 <img
-                  src={HERO_IMAGE_PATH}
+                  src={HERO_IMAGE}
                   alt="Atendimento especializado no Ortho Recreio"
                   className="w-full h-[410px] object-cover"
                   referrerPolicy="no-referrer"
@@ -389,7 +389,7 @@ import SPORTS_IMAGE from './assets/images/ortho_sports_1781287864452.jpg';
               {/* Right image/graphics column of sports bento */}
               <div className="md:w-1/2 h-56 md:h-auto min-h-[220px] relative">
                 <img
-                  src={SPORTS_IMAGE_PATH}
+                  src={SPORTS_IMAGE}
                   alt="Medicina esportiva de alta precisão"
                   className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
                   referrerPolicy="no-referrer"
