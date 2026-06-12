@@ -482,25 +482,31 @@ export default function App() {
                   <div className="w-5 h-5 rounded-full bg-[#00a896]/15 hover:bg-[#00a896]/30 flex items-center justify-center text-[#00a896] shrink-0 border border-[#00a896]/10">
                     <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
-                  <span>Exames Digitais e Termografia no Local</span>
+                  <span className="flex-1">Exames Digitais e Termografia no Local</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-medium text-slate-700">
                   <div className="w-5 h-5 rounded-full bg-[#00a896]/15 hover:bg-[#00a896]/30 flex items-center justify-center text-[#00a896] shrink-0 border border-[#00a896]/10">
                     <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
-                  <span>Infiltrações Guiadas por Ultrassom</span>
+                  <span className="flex-1">Infiltrações Guiadas por Ultrassom</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-medium text-slate-700">
                   <div className="w-5 h-5 rounded-full bg-[#00a896]/15 hover:bg-[#00a896]/30 flex items-center justify-center text-[#00a896] shrink-0 border border-[#00a896]/10">
                     <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
-                  <span>Gesso Respirável e Lavável 3D</span>
+                  <span className="flex-1">Gesso Respirável e Lavável 3D</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs font-medium text-slate-700">
                   <div className="w-5 h-5 rounded-full bg-[#00a896]/15 hover:bg-[#00a896]/30 flex items-center justify-center text-[#00a896] shrink-0 border border-[#00a896]/10">
                     <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
-                  <span>Reabilitação Funcional Integrada</span>
+                  <span className="flex-1">Reabilitação Funcional Integrada</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs font-medium text-slate-700">
+                  <div className="w-5 h-5 rounded-full bg-ocean/15 hover:bg-ocean/30 flex items-center justify-center text-ocean shrink-0 border border-ocean/10">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  </div>
+                  <span className="flex-1 font-bold">Emissão de Laudos PCD, INSS e LOAS</span>
                 </div>
               </div>
 
@@ -670,9 +676,8 @@ export default function App() {
                   </div>
                   <div>
                     <strong className="text-ocean block">Endereço de Atendimento</strong>
-                    <span className="leading-relaxed">Av. das Américas, 18250 - Sl 302 • Recreio dos Bandeirantes, Rio de Janeiro - RJ<br /><span className="text-[10px] text-slate-400 italic">Ao lado da Secretaria de Cultura / Próximo ao Baixinho das Pedras</span></span
-                    >(Lembre-se de atualizar o endereço se mudar) </span>
                     <span className="leading-relaxed">Av. das Américas, 18250 - Sl 302 • Recreio dos Bandeirantes, Rio de Janeiro - RJ</span>
+                    <span className="block text-[10px] text-slate-400 italic mt-0.5 font-medium">📍 Ao lado da Secretaria de Cultura / Próximo ao Baixinho das Pedras</span>
                   </div>
                 </div>
 
