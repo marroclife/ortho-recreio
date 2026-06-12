@@ -37,6 +37,17 @@ export const SPECIALTIES: Specialty[] = [
 
 export const DOCTORS: Doctor[] = [
   {
+    id: 'dr-jorge',
+    name: 'Dr. Jorge Mendonça',
+    role: 'Ortopedista e Traumatologista',
+    crm: 'CRM-RJ (Consulte na Clínica)',
+    specialtyId: 'trauma',
+    avatar: 'JM',
+    bio: 'Referência em Traumatologia e Ortopedia no Recreio, especializado em recuperação de mobilidade e emissão de laudos periciais.',
+    availableDays: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
+    availableHours: ['08:00', '10:00', '14:00', '16:00']
+  },
+  {
     id: 'dr-gabriel',
     name: 'Dr. Gabriel Menezes',
     role: 'Especialista em Joelho & Medicina Esportiva',

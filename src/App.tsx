@@ -670,6 +670,8 @@ export default function App() {
                   </div>
                   <div>
                     <strong className="text-ocean block">Endereço de Atendimento</strong>
+                    <span className="leading-relaxed">Av. das Américas, 18250 - Sl 302 • Recreio dos Bandeirantes, Rio de Janeiro - RJ<br /><span className="text-[10px] text-slate-400 italic">Ao lado da Secretaria de Cultura / Próximo ao Baixinho das Pedras</span></span
+                    >(Lembre-se de atualizar o endereço se mudar) </span>
                     <span className="leading-relaxed">Av. das Américas, 18250 - Sl 302 • Recreio dos Bandeirantes, Rio de Janeiro - RJ</span>
                   </div>
                 </div>
@@ -690,8 +692,8 @@ export default function App() {
                   </div>
                   <div>
                     <strong className="text-ocean block">Telefone e WhatsApp Corp.</strong>
-                    <a href="tel:+552134567890" className="hover:underline hover:text-cyan-glow transition-all block leading-normal">(21) 3456-7890</a>
-                    <a href="https://wa.me/5521999999999" target="_blank" className="hover:underline hover:text-emerald-500 transition-all font-semibold text-[#00a896] block font-mono">(21) 99999-9999 • WhatsApp Direto</a>
+                    <a href="tel:+5521967691358" className="hover:underline hover:text-cyan-glow transition-all block leading-normal">(21) 96769-1358</a>
+                    <a href="https://wa.me/5521967691358" target="_blank" className="hover:underline hover:text-emerald-500 transition-all font-semibold text-[#00a896] block font-mono">(21) 96769-1358 • WhatsApp Direto</a>
                   </div>
                 </div>
 
