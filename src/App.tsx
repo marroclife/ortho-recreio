@@ -81,7 +81,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-fluid-gradient min-h-screen relative font-sans text-slate-700 select-none pb-0">
+    <div className="bg-fluid-gradient min-h-screen relative font-sans text-slate-700 select-none pb-0 overflow-x-hidden">
       
       {/* Decorative ambient blurred particles in general body background */}
       <div className="absolute top-48 left-12 w-96 h-96 rounded-full bg-cyan-glow/10 filter blur-[100px] pointer-events-none animate-pulse-slow" />
