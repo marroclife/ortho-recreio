@@ -1,0 +1,6 @@
+{
+  "name": "Ortho Recreio",
+  "description": "High-end orthopedic and traumatology clinic, combining advanced technology, modern glassmorphism design, and specialized movement restoration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
