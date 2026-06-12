@@ -46,39 +46,6 @@ export const DOCTORS: Doctor[] = [
     bio: 'Referência em Traumatologia e Ortopedia no Recreio, especializado em recuperação de mobilidade e emissão de laudos periciais.',
     availableDays: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
     availableHours: ['08:00', '10:00', '14:00', '16:00']
-  },
-  {
-    id: 'dr-gabriel',
-    name: 'Dr. Gabriel Menezes',
-    role: 'Especialista em Joelho & Medicina Esportiva',
-    crm: 'CRM-RJ 52.98453-2',
-    specialtyId: 'sports',
-    avatar: 'GM',
-    bio: 'Ex-médico do departamento de alto rendimento de futebol profissional, mestre em reconstruções ligamentares complexas com pós-graduação nos EUA.',
-    availableDays: ['Seg', 'Qua', 'Sex'],
-    availableHours: ['08:00', '09:30', '11:00', '14:00', '15:30', '17:00']
-  },
-  {
-    id: 'dra-sofia',
-    name: 'Dra. Sofia Alencar',
-    role: 'Especialista em Endoscopia de Coluna & Escoliose',
-    crm: 'CRM-RJ 52.87114-5',
-    specialtyId: 'spine',
-    avatar: 'SA',
-    bio: 'Pioneira em cirurgias vertebrais por vídeo minimamente invasivas na Zona Oeste. Dedicada a restaurar a postura natural e eliminar dores na coluna lombar e cervical.',
-    availableDays: ['Ter', 'Qui'],
-    availableHours: ['09:00', '10:30', '13:00', '14:30', '16:00', '17:30']
-  },
-  {
-    id: 'dr-lucas',
-    name: 'Dr. Lucas Castanhari',
-    role: 'Especialista em Quadril, Joelho e Trauma Complexo',
-    crm: 'CRM-RJ 52.45612-9',
-    specialtyId: 'joints',
-    avatar: 'LC',
-    bio: 'Doutor em Ortopedia Reconstrutiva e referência em artroplastias primárias e de revisão. Especialista na aplicação de gesso termoplástico 3D respirável em fraturas esportivas.',
-    availableDays: ['Seg', 'Ter', 'Qui'],
-    availableHours: ['08:30', '10:00', '11:30', '15:00', '16:30']
   }
 ];
 

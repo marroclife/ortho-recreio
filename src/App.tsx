@@ -886,12 +886,13 @@ export default function App() {
             <div className="space-y-3">
               <h4 className="font-serif font-bold text-white text-sm">Localização Principal</h4>
               <p className="text-xs text-slate-400 leading-relaxed font-sans">
-                Av. das Américas, 18250 - Sl 302 • Recreio dos Bandeirantes, Rio de Janeiro - RJ (Em frente ao Américas Shopping)
+                Av. das Américas, 18250 - Sl 302 • Recreio dos Bandeirantes, Rio de Janeiro - RJ<br />
+                <span className="text-[10px] opacity-70 italic">📍 Ao lado da Secretaria de Cultura / Próximo ao Baixinho das Pedras</span>
               </p>
               <div className="pt-2 text-xs">
                 <strong className="text-teal-400 block font-sans font-semibold">Agendamentos 24h por WhatsApp:</strong>
-                <a href="https://wa.me/5521999999999" target="_blank" className="text-[11px] text-[#00f0ff] hover:underline font-bold font-mono">
-                  (21) 99999-9999
+                <a href="https://wa.me/5521967691358" target="_blank" className="text-[11px] text-[#00f0ff] hover:underline font-bold font-mono">
+                  (21) 96769-1358
                 </a>
               </div>
             </div>
