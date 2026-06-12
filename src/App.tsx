@@ -14,11 +14,10 @@ import BookingModal from './components/BookingModal';
 import { SPECIALTIES, DOCTORS, TESTIMONIALS } from './data';
 import { Specialty, Doctor } from './types';
 
-// Image paths from asset generation
-const HERO_IMAGE_PATH = '/src/assets/images/ortho_hero_1781287848853.jpg';
-const SPORTS_IMAGE_PATH = '/src/assets/images/ortho_sports_1781287864452.jpg';
+import HERO_IMAGE from './assets/images/ortho_hero_1781287848853.jpg';
+import SPORTS_IMAGE from './assets/images/ortho_sports_1781287864452.jpg';
 
-export default function App() {
+// Subcomponents
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSpecialtyPreset, setModalSpecialtyPreset] = useState('');
