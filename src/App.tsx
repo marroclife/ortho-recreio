@@ -313,7 +313,7 @@ export default function App() {
               </p>
             </div>
 
-            {/* Cards - MedPro real style: image background + white text overlay */}
+            {/* Cards - MedPro style: image background + floating white box at bottom */}
             <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 { spec: SPECIALTIES[0], image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=500&fit=crop' },
@@ -325,18 +325,14 @@ export default function App() {
                   onClick={() => triggerBooking(spec.id)}
                   className="group relative aspect-[4/5] rounded-[20px] overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-[1.03]"
                   style={{
-                    backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%), url(${image})`,
+                    backgroundImage: `url(${image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}
                 >
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 text-left">
-                    <span className="text-sm text-white/80 mb-1">{spec.tags[0]}</span>
-                    <h3 className="h5 text-white mb-4">{spec.title}</h3>
-                    <div className="flex items-center gap-2 text-white font-bold text-sm group-hover:gap-4 transition-all">
-                      <span>Discover More</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
+                  <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-[80%] bg-white rounded-[15px] p-5 shadow-lg text-center transition-transform duration-300 group-hover:-translate-y-1">
+                    <span className="text-sm text-primary block mb-1">{spec.tags[0]}</span>
+                    <h3 className="h5 text-heading">{spec.title}</h3>
                   </div>
                 </button>
               ))}
@@ -460,63 +456,57 @@ export default function App() {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-10 items-start">
-            {/* Tabs menu */}
-            <div className="flex lg:flex-col gap-3 w-full lg:w-[240px] shrink-0">
-              {TREATMENT_PLANS.map((plan) => (
-                <button
-                  key={plan.id}
-                  onClick={() => setActiveTab(plan.id)}
-                  className={`w-full text-left px-6 py-4 rounded-lg font-bold transition-all ${
-                    activeTab === plan.id
-                      ? 'bg-white text-primary shadow-md'
-                      : 'text-heading hover:bg-white/50'
-                  }`}
-                >
-                  {plan.label}
-                </button>
-              ))}
-            </div>
+          {/* Horizontal tabs */}
+          <div className="flex justify-center gap-3 mb-10 flex-wrap">
+            {TREATMENT_PLANS.map((plan) => (
+              <button
+                key={plan.id}
+                onClick={() => setActiveTab(plan.id)}
+                className={`px-6 py-3 rounded-lg font-bold transition-all ${
+                  activeTab === plan.id
+                    ? 'bg-primary text-white shadow-md'
+                    : 'bg-white text-heading hover:bg-white/80'
+                }`}
+              >
+                {plan.label}
+              </button>
+            ))}
+          </div>
 
-            {/* Tab content */}
-            <div className="flex-1 bg-white rounded-[20px] p-8 lg:p-10 shadow-sm">
-              <div className="flex flex-col lg:flex-row gap-10 items-center">
-                <div className="lg:w-[45%]">
-                  <div className="img-rounded bg-cream">
-                    <img
-                      src={activePlan.image}
-                      alt={activePlan.title}
-                      className="w-full h-[400px] lg:h-[500px] object-cover rounded-[20px]"
-                    />
-                  </div>
+          {/* Tab content card */}
+          <div className="max-w-[1000px] mx-auto bg-light-low-soft rounded-[24px] p-6 lg:p-10">
+            <div className="flex flex-col lg:flex-row gap-10 items-center">
+              <div className="lg:w-[45%]">
+                <img
+                  src={activePlan.image}
+                  alt={activePlan.title}
+                  className="w-full h-[350px] lg:h-[420px] object-cover rounded-[20px]"
+                />
+              </div>
+              <div className="lg:w-[55%]">
+                <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center mb-6">
+                  <activePlan.icon className="w-7 h-7 text-white" />
                 </div>
-                <div className="lg:w-[55%]">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                    <activePlan.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  <h3 className="h3 mb-4">{activePlan.title}</h3>
-                  <p className="body-variant-3 mb-8">
-                    A Ortho Recreio oferece um cuidado completo, do diagnóstico à reabilitação, para que você recupere sua mobilidade com segurança.
-                  </p>
-                  <div className="space-y-4 mb-8">
-                    {activePlan.points.map((point, idx) => (
-                      <div key={idx} className="flex items-start gap-4">
-                        <img
-                          src="https://cdn.prod.website-files.com/6426aa53f075ab6c61341787/6426aa53f075ab97643417a2_check%20mark.svg"
-                          alt="check"
-                          className="w-5 h-5 mt-1 shrink-0"
-                        />
-                        <span className="body-text">{point}</span>
+                <h3 className="h3 mb-4">{activePlan.title}</h3>
+                <p className="body-variant-3 mb-8">
+                  A Ortho Recreio oferece um cuidado completo, do diagnóstico à reabilitação, para que você recupere sua mobilidade com segurança.
+                </p>
+                <div className="space-y-4 mb-8">
+                  {activePlan.points.map((point, idx) => (
+                    <div key={idx} className="flex items-start gap-4">
+                      <div className="w-5 h-5 rounded-full bg-heading flex items-center justify-center mt-1 shrink-0">
+                        <Check className="w-3 h-3 text-white" />
                       </div>
-                    ))}
-                  </div>
-                  <button
-                    onClick={() => triggerBooking()}
-                    className="btn-primary"
-                  >
-                    Take an Appointment
-                  </button>
+                      <span className="body-text">{point}</span>
+                    </div>
+                  ))}
                 </div>
+                <button
+                  onClick={() => triggerBooking()}
+                  className="btn-primary"
+                >
+                  Take an Appointment
+                </button>
               </div>
             </div>
           </div>
@@ -704,99 +694,27 @@ export default function App() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-light-high text-white/70 pt-16 pb-8">
+      <footer className="bg-light-high text-white py-6">
         <div className="container-medpro">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
-
-            {/* Brand column */}
-            <div className="lg:col-span-4 space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12">
-                  <img
-                    src={LOGO_IMAGE}
-                    alt="Ortho Recreio"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="font-bold text-xl text-white tracking-tight">Ortho Recreio</span>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <a href="#home" className="flex items-center gap-3">
+              <div className="w-10 h-10">
+                <img
+                  src={LOGO_IMAGE}
+                  alt="Ortho Recreio"
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <div className="flex flex-col gap-3">
-                <button
-                  onClick={() => triggerBooking()}
-                  className="btn-ghost justify-start"
-                >
-                  <Calendar className="w-4 h-4" />
-                  Take an Appointment
-                </button>
-                <a
-                  href="https://wa.me/5521967691358"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-ghost justify-start"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  Connect on Whatsapp
-                </a>
-              </div>
-            </div>
+              <span className="font-bold text-lg text-white tracking-tight">Ortho Recreio</span>
+            </a>
 
-            {/* Links columns */}
-            <div className="lg:col-span-2">
-              <h4 className="footer-heading">Serviços</h4>
-              <ul className="space-y-3">
-                {SPECIALTIES.slice(0, 4).map((s) => (
-                  <li key={s.id}>
-                    <button
-                      onClick={() => triggerBooking(s.id)}
-                      className="footer-link"
-                    >
-                      {s.title}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="lg:col-span-2">
-              <h4 className="footer-heading">Tratamentos</h4>
-              <ul className="space-y-3">
-                <li><button onClick={() => triggerBooking('spine')} className="footer-link">Saúde da Coluna</button></li>
-                <li><button onClick={() => triggerBooking('sports')} className="footer-link">Medicina Esportiva</button></li>
-                <li><button onClick={() => triggerBooking('joints')} className="footer-link">Próteses & Articulações</button></li>
-                <li><button onClick={() => triggerBooking('trauma')} className="footer-link">Traumatologia</button></li>
-              </ul>
-            </div>
-
-            <div className="lg:col-span-2">
-              <h4 className="footer-heading">Atendimento</h4>
-              <ul className="space-y-3">
-                <li><button onClick={() => triggerBooking()} className="footer-link">Agendamento Online</button></li>
-                <li><a href="#sobre" className="footer-link">Nossa Equipe</a></li>
-                <li><a href="#contato" className="footer-link">Fale Conosco</a></li>
-                <li><a href="#depoimentos" className="footer-link">Depoimentos</a></li>
-              </ul>
-            </div>
-
-            <div className="lg:col-span-2">
-              <h4 className="footer-heading">Unidade Principal</h4>
-              <p className="text-sm text-white/60 leading-relaxed mb-3">
-                Av. das Américas, 18250 - Sl 302 • Recreio dos Bandeirantes
-              </p>
-              <p className="text-sm text-white font-medium">
-                (21) 96769-1358
-              </p>
-            </div>
-          </div>
-
-          <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
-            <div className="flex flex-wrap items-center gap-2">
-              <span>© {new Date().getFullYear()} Ortho Recreio. Todos os direitos reservados.</span>
-            </div>
-            <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-white/70 transition-colors">Termos de Uso</a>
-              <a href="#" className="hover:text-white/70 transition-colors">LGPD</a>
-              <span>Responsável Técnico: Dr. Jorge Mendonça</span>
-            </div>
+            <button
+              onClick={() => triggerBooking()}
+              className="btn-ghost"
+            >
+              <Send className="w-4 h-4" />
+              Take an Appointment
+            </button>
           </div>
         </div>
       </footer>

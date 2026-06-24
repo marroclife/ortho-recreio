@@ -460,6 +460,10 @@ body {
   animation-play-state: paused;
 }
 
+.bg-light-low-soft {
+  background-color: #e0f7fa;
+}
+
 @media (min-width: 640px) {
   .container-medpro {
     padding-left: 1.5rem;
