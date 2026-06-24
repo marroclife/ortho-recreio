@@ -345,10 +345,10 @@ export default function App() {
         </div>
       </section>
 
-      {/* SERVICES GRID SECTION */}
+      {/* SERVICES MARQUEE SECTION */}
       <section id="servicos" className="py-24 lg:py-32 bg-cream">
-        <div className="container-medpro">
-          <div className="text-center max-w-[570px] mx-auto mb-14">
+        <div className="container-medpro mb-14">
+          <div className="text-center max-w-[570px] mx-auto">
             <div className="section-label justify-center mb-4">
               <span>Services & Treatments</span>
             </div>
@@ -356,32 +356,36 @@ export default function App() {
               Mais de 20 especialidades e serviços de saúde
             </h2>
           </div>
+        </div>
 
-          <div className="flex flex-wrap justify-center gap-8 lg:gap-12 mb-12">
-            {SPECIALTIES.map((spec) => (
-              <button
-                key={spec.id}
-                onClick={() => triggerBooking(spec.id)}
-                className="group flex flex-col items-center text-center w-[160px]"
-              >
-                <div className="service-icon-circle group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  {getSpecialtyIcon(spec.iconName, 'w-8 h-8')}
-                </div>
-                <span className="h6 group-hover:text-primary transition-colors">
-                  {spec.title}
-                </span>
-              </button>
-            ))}
-          </div>
+        <div className="relative overflow-hidden mb-12 group">
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-cream to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-cream to-transparent z-10 pointer-events-none" />
 
-          <div className="text-center">
-            <button
-              onClick={() => triggerBooking()}
-              className="btn-primary"
-            >
-              See all Services
-            </button>
+          <div className="marquee-track">
+            <div className="marquee-content">
+              {[...SPECIALTIES, ...SPECIALTIES, ...SPECIALTIES, ...SPECIALTIES].map((spec, idx) => (
+                <button
+                  key={`a-${spec.id}-${idx}`}
+                  onClick={() => triggerBooking(spec.id)}
+                  className="marquee-item group"
+                >
+                  <div className="service-icon-circle group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    {getSpecialtyIcon(spec.iconName, 'w-8 h-8')}
+                  </div>
+                  <span className="h6 group-hover:text-primary transition-colors text-center">
+                    {spec.title}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
+        </div>
+
+        <div className="text-center">
+          <button onClick={() => triggerBooking()} className="btn-primary">
+            See all Services
+          </button>
         </div>
       </section>
 
