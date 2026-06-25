@@ -36,6 +36,13 @@ export default function App() {
   const [contactMsg, setContactMsg] = useState('');
   const [contactSubmitted, setContactSubmitted] = useState(false);
 
+  // Footer accordion state (mobile) — start collapsed on mobile, expanded on desktop
+  const [openFooterSections, setOpenFooterSections] = useState<Record<string, boolean>>({
+    services: false,
+    checkup: false,
+    links: false,
+  });
+
   // Set page title and metadata on mount
   useEffect(() => {
     document.title = 'Ortho Recreio • Ortopedia & Reabilitação';
@@ -253,31 +260,31 @@ export default function App() {
 
         <div className="container-medpro relative z-10">
           {/* Mobile compact hero */}
-          <div className="lg:hidden flex flex-col items-center text-center py-3">
-            <div className="text-sm text-primary mb-2">Bem-vindo à Ortho Recreio</div>
-            <h1 className="text-[1.55rem] leading-[1.15] mb-3 max-w-[340px]">
+          <div className="lg:hidden flex flex-col items-center text-center pt-0 pb-2">
+            <div className="text-[11px] text-primary mb-1">Bem-vindo à Ortho Recreio</div>
+            <h1 className="text-[1.4rem] leading-[1.2] mb-2 max-w-[300px]">
               Cuidamos da sua vida em movimento
             </h1>
 
-            <div className="flex flex-col items-center gap-3 mb-3 w-full">
+            <div className="flex flex-row items-center justify-center gap-3 mb-2 w-full">
               <button
                 onClick={() => triggerBooking()}
-                className="btn-primary h-[40px] w-[160px] text-sm"
+                className="btn-primary h-[36px] w-[140px] text-sm"
               >
                 Saiba Mais
               </button>
               <a href="tel:+5521967691358" className="flex items-center gap-2 text-heading">
-                <div className="text-xs uppercase tracking-wider text-body text-left leading-tight">
+                <div className="text-[10px] uppercase tracking-wider text-body text-left leading-tight">
                   <div>Para agendamento</div>
-                  <div className="flex items-center gap-2 font-bold text-heading text-base">
-                    <Phone className="w-4 h-4 text-primary" />
+                  <div className="flex items-center gap-1.5 font-bold text-heading text-sm">
+                    <Phone className="w-3.5 h-3.5 text-primary" />
                     (21) 96769-1358
                   </div>
                 </div>
               </a>
             </div>
 
-            <div className="relative w-[220px] h-[220px] mb-3">
+            <div className="relative w-[150px] h-[150px] mb-2">
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] aspect-square rounded-full bg-gradient-to-tr from-white/60 to-white/20" />
               <img
                 src={HERO_IMAGE}
@@ -287,10 +294,10 @@ export default function App() {
             </div>
 
             <div className="inline-flex items-center gap-2 bg-white rounded-full shadow-md px-3 py-1.5">
-              <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
-                <Heart className="w-4 h-4 text-primary" />
+              <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                <Heart className="w-3.5 h-3.5 text-primary" />
               </div>
-              <div className="text-sm font-bold text-heading leading-tight text-left">
+              <div className="text-xs font-bold text-heading leading-tight text-left">
                 Mais de 1.500 pacientes atendidos!
               </div>
             </div>
@@ -349,21 +356,21 @@ export default function App() {
       </section>
 
       {/* TREATMENT / SPECIALTIES SECTION */}
-      <section id="especialidades" className="py-16 lg:py-24 bg-primary relative overflow-hidden">
+      <section id="especialidades" className="py-4 lg:py-24 bg-primary relative overflow-hidden">
         <div className="container-medpro relative z-10">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+          <div className="flex flex-col lg:flex-row gap-2 lg:gap-16 items-start">
             {/* Left text */}
             <div className="lg:max-w-[380px]">
-              <h2 className="h2 text-white mb-4 text-[2rem] lg:text-[2.2rem]">
+              <h2 className="h2 text-white mb-1 text-[1.35rem] lg:text-[2.2rem] leading-snug">
                 A Ortho Recreio se dedica a oferecer o melhor tratamento.
               </h2>
-              <p className="text-white/80 text-base lg:text-lg leading-relaxed">
-                Unimos ortopedia avançada, reabilitação funcional e tecnologia de ponta para restaurar sua mobilidade e qualidade de vida.
+              <p className="text-white/80 text-sm lg:text-lg leading-snug hidden lg:block">
+                Ortopedia avançada, reabilitação funcional e tecnologia de ponta.
               </p>
             </div>
 
             {/* Cards - MedPro style: image background + floating white box at bottom */}
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 h-auto lg:h-[220px]">
+            <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5 h-auto">
               {[
                 { spec: SPECIALTIES[0], image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=500&fit=crop' },
                 { spec: SPECIALTIES[1], image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400&h=500&fit=crop' },
@@ -372,16 +379,16 @@ export default function App() {
                 <button
                   key={spec.id}
                   onClick={() => triggerBooking(spec.id)}
-                  className="group relative h-[220px] rounded-[16px] overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] shadow-[0_12px_32px_rgba(0,0,0,0.15)]"
+                  className="group relative h-[130px] lg:h-[220px] rounded-[12px] lg:rounded-[16px] overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] shadow-[0_12px_32px_rgba(0,0,0,0.15)]"
                   style={{
                     backgroundImage: `url(${image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}
                 >
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[88%] bg-white rounded-[12px] p-3 shadow-[0_8px_24px_rgba(0,0,0,0.12)] text-center transition-transform duration-300 group-hover:-translate-y-2">
-                    <span className="text-xs text-primary block mb-0.5 font-semibold">{spec.tags[0]}</span>
-                    <h3 className="text-sm font-bold text-heading">{spec.title}</h3>
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[92%] bg-white rounded-[10px] lg:rounded-[12px] p-2 shadow-[0_8px_24px_rgba(0,0,0,0.12)] text-center transition-transform duration-300 group-hover:-translate-y-2">
+                    <span className="text-[10px] lg:text-xs text-primary block mb-0 font-semibold">{spec.tags[0]}</span>
+                    <h3 className="text-[11px] lg:text-sm font-bold text-heading leading-tight">{spec.title}</h3>
                   </div>
                 </button>
               ))}
@@ -391,19 +398,19 @@ export default function App() {
       </section>
 
       {/* SERVICES MARQUEE SECTION — MedPro style: right-to-left carousel */}
-      <section id="servicos" className="py-12 lg:py-16 bg-cream">
-        <div className="container-medpro mb-8">
+      <section id="servicos" className="py-8 lg:py-16 bg-cream">
+        <div className="container-medpro mb-4">
           <div className="text-center max-w-[570px] mx-auto">
-            <div className="section-label justify-center mb-2">
+            <div className="section-label justify-center mb-1">
               <span>Services & Treatments</span>
             </div>
-            <h2 className="text-2xl lg:text-[2.2rem] font-bold text-heading mb-2">
+            <h2 className="text-lg lg:text-[2.2rem] font-bold text-heading mb-1">
               Mais de 20 especialidades e serviços de saúde
             </h2>
           </div>
         </div>
 
-        <div className="relative overflow-hidden mb-8 group">
+        <div className="relative overflow-hidden mb-4 group">
           <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-cream to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-cream to-transparent z-10 pointer-events-none" />
 
@@ -435,14 +442,14 @@ export default function App() {
       </section>
 
       {/* WHY CHOOSE US SECTION */}
-      <section id="sobre" className="py-8 lg:py-10 bg-light-high text-white relative overflow-hidden">
+      <section id="sobre" className="py-6 lg:py-10 bg-light-high text-white relative overflow-hidden">
         <div className="container-medpro">
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-5 items-stretch">
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-5 items-stretch">
             {/* Differentials card */}
-            <div className="card-white p-5 lg:p-6 lg:max-w-[400px]">
-              <h3 className="text-base font-bold text-heading mb-4">Por que nos escolher?</h3>
+            <div className="card-white p-4 lg:p-6 lg:max-w-[400px]">
+              <h3 className="text-base font-bold text-heading mb-3">Por que nos escolher?</h3>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 {[
                   { title: 'Segurança em primeiro lugar', desc: 'Protocolos rigorosos de biossegurança e esterilização.' },
                   { title: 'Foco no paciente', desc: 'Atendimento humanizado e acompanhamento próximo.' },
@@ -451,14 +458,14 @@ export default function App() {
                   { title: 'Cuidado coordenado', desc: 'Equipe multidisciplinar alinhada no plano de tratamento.' },
                   { title: 'Recuperação acelerada', desc: 'Fisioterapia integrada para você voltar a se mover.' },
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-4">
+                  <div key={idx} className="flex items-start gap-3">
                     <img
                       src="https://cdn.prod.website-files.com/6426aa53f075ab6c61341787/6426aa53f075abfad43417b3_Checkmark.svg"
                       alt="check"
-                      className="w-6 h-6 mt-0.5 shrink-0"
+                      className="w-5 h-5 mt-0.5 shrink-0"
                     />
                     <div>
-                      <h4 className="font-bold text-heading text-base mb-1">{item.title}</h4>
+                      <h4 className="font-bold text-heading text-sm mb-0">{item.title}</h4>
                     </div>
                   </div>
                 ))}
@@ -467,10 +474,10 @@ export default function App() {
 
             {/* Right content */}
             <div className="flex-1 flex flex-col justify-center py-1">
-              <h2 className="text-xl lg:text-2xl font-bold text-white mb-2">
+              <h2 className="text-lg lg:text-2xl font-bold text-white mb-2">
                 Dedicados a oferecer o melhor tratamento ortopédico.
               </h2>
-              <p className="text-white/80 text-sm lg:text-base leading-relaxed mb-4">
+              <p className="text-white/80 text-sm lg:text-base leading-relaxed mb-3">
                 Na Ortho Recreio, unimos experiência clínica, tecnologia avançada e um ambiente acolhedor
                 para cuidar da sua saúde articular, muscular e do seu bem-estar geral.
               </p>
@@ -496,58 +503,58 @@ export default function App() {
       </section>
 
       {/* HEALTH CHECKUP PLANS / TABS SECTION — MedPro style: vertical tabs left, content right */}
-      <section className="py-8 lg:py-10 bg-light-low">
+      <section className="py-6 lg:py-10 bg-light-low">
         <div className="container-medpro">
-          <div className="text-center max-w-[600px] mx-auto mb-6">
-            <h2 className="text-2xl lg:text-[2.2rem] font-bold text-heading mb-2">Planos de Tratamento</h2>
-            <p className="text-base text-body">
-              Protocolos personalizados para cada fase da sua recuperação ortopédica.
+          <div className="text-center max-w-[600px] mx-auto mb-4">
+            <h2 className="text-xl lg:text-[2.2rem] font-bold text-heading mb-1">Planos de Tratamento</h2>
+            <p className="text-sm text-body">
+              Protocolos personalizados para cada fase da sua recuperação.
             </p>
           </div>
 
           {/* Vertical tabs layout */}
-          <div className="max-w-[900px] mx-auto bg-white rounded-[20px] p-4 lg:p-6 shadow-sm">
-            <div className="flex flex-col lg:flex-row gap-4">
-              {/* Tabs — vertical on desktop */}
-              <div className="lg:w-[220px] flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
+          <div className="max-w-[900px] mx-auto bg-white rounded-[16px] lg:rounded-[20px] p-3 lg:p-6 shadow-sm">
+            <div className="flex flex-col lg:flex-row gap-3 lg:gap-4">
+              {/* Tabs — grid on mobile, vertical on desktop */}
+              <div className="lg:w-[220px] grid grid-cols-2 gap-2">
                 {TREATMENT_PLANS.map((plan) => (
                   <button
                     key={plan.id}
                     onClick={() => setActiveTab(plan.id)}
-                    className={`text-left px-3 py-2.5 rounded-lg font-bold transition-all whitespace-nowrap lg:whitespace-normal flex items-center gap-2 ${
+                    className={`text-left px-2.5 lg:px-3 py-2 rounded-lg font-bold transition-all flex items-center gap-2 ${
                       activeTab === plan.id
                         ? 'bg-primary text-white shadow-md'
                         : 'bg-[#f0fffe] text-heading hover:bg-white hover:shadow-sm'
                     }`}
                   >
                     <plan.icon className="w-4 h-4 shrink-0" />
-                    <span className="text-sm">{plan.label}</span>
+                    <span className="text-xs lg:text-sm">{plan.label}</span>
                   </button>
                 ))}
               </div>
 
               {/* Content */}
               <div className="flex-1">
-                <div className="flex flex-col lg:flex-row gap-5 items-center">
+                <div className="flex flex-col lg:flex-row gap-3 lg:gap-5 items-center">
                   <div className="lg:w-[40%]">
                     <img
                       src={activePlan.image}
                       alt={activePlan.title}
-                      className="w-full h-[180px] lg:h-[220px] object-cover rounded-[14px]"
+                      className="w-full h-[140px] lg:h-[220px] object-cover rounded-[12px] lg:rounded-[14px]"
                     />
                   </div>
                   <div className="lg:w-[60%]">
-                    <h3 className="text-lg font-bold text-heading mb-2">{activePlan.title}</h3>
-                    <p className="text-sm text-body mb-3">
-                      A Ortho Recreio oferece um cuidado completo, do diagnóstico à reabilitação, para que você recupere sua mobilidade com segurança.
+                    <h3 className="text-base lg:text-lg font-bold text-heading mb-1 lg:mb-2">{activePlan.title}</h3>
+                    <p className="text-xs lg:text-sm text-body mb-2">
+                      Cuidado completo do diagnóstico à reabilitação para você recuperar a mobilidade com segurança.
                     </p>
-                    <div className="space-y-2 mb-4">
+                    <div className="space-y-1 lg:space-y-2 mb-3 lg:mb-4">
                       {activePlan.points.map((point, idx) => (
                         <div key={idx} className="flex items-start gap-2">
                           <div className="w-4 h-4 rounded-full bg-heading flex items-center justify-center mt-0.5 shrink-0">
                             <Check className="w-2.5 h-2.5 text-white" />
                           </div>
-                          <span className="text-sm text-body">{point}</span>
+                          <span className="text-xs lg:text-sm text-body">{point}</span>
                         </div>
                       ))}
                     </div>
@@ -566,15 +573,15 @@ export default function App() {
       </section>
 
       {/* TESTIMONIALS SECTION */}
-      <section id="depoimentos" className="py-8 lg:py-10 bg-light-high text-white relative overflow-hidden">
+      <section id="depoimentos" className="py-5 lg:py-10 bg-light-high text-white relative overflow-hidden">
         <div className="container-medpro">
-          <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
+          <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-8">
             {/* Testimonial text */}
             <div className="lg:w-[55%]">
               <img
                 src="https://cdn.prod.website-files.com/6426aa53f075ab6c61341787/6426aa53f075ab590b3417b7_Testimonial%20Quote.svg"
                 alt="quote"
-                className="w-10 h-10 mb-3 opacity-80"
+                className="w-7 h-7 mb-2 opacity-80"
               />
               <AnimatePresence mode="wait">
                 <motion.div
@@ -584,17 +591,17 @@ export default function App() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <blockquote className="text-lg lg:text-xl leading-relaxed mb-4 font-serif">
+                  <blockquote className="text-base lg:text-xl leading-snug mb-2 font-serif">
                     “{currentTestimonial.quote}”
                   </blockquote>
-                  <div className="text-sm">
+                  <div className="text-xs lg:text-sm">
                     <span className="font-bold text-white">{currentTestimonial.name}</span>
                     <span className="text-white/60"> — {currentTestimonial.age} anos • {currentTestimonial.condition}</span>
                   </div>
                 </motion.div>
               </AnimatePresence>
 
-              <div className="flex items-center gap-3 mt-4">
+              <div className="flex items-center gap-3 mt-2">
                 <button
                   onClick={prevTestimonial}
                   className="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
@@ -621,7 +628,7 @@ export default function App() {
 
             {/* Testimonial image/video placeholder */}
             <div className="lg:w-[45%] relative">
-              <div className="relative w-[180px] h-[180px] lg:w-[260px] lg:h-[260px] mx-auto rounded-full overflow-hidden border-[4px] border-white/20 shadow-2xl">
+              <div className="relative w-[150px] h-[150px] lg:w-[260px] lg:h-[260px] mx-auto rounded-full overflow-hidden border-[3px] lg:border-[4px] border-white/20 shadow-2xl">
                 <img
                   src={DOCTOR_PORTRAIT}
                   alt="Depoimento Ortho Recreio"
@@ -634,18 +641,18 @@ export default function App() {
       </section>
 
       {/* CONTACT SECTION */}
-      <section id="contato" className="py-8 lg:py-10 bg-light-low">
+      <section id="contato" className="py-5 lg:py-10 bg-light-low">
         <div className="container-medpro">
-          <div className="flex flex-col lg:flex-row gap-10 items-start">
+          <div className="flex flex-col lg:flex-row gap-5 lg:gap-10 items-start">
             {/* Contact info */}
             <div className="lg:max-w-[420px]">
-              <div className="section-label-light mb-2">Agendamento</div>
-              <h2 className="text-xl lg:text-2xl font-bold text-heading mb-2">Entre em contato para agendar sua consulta</h2>
-              <p className="text-sm text-body mb-4">
-                Estamos no Recreio esperando por você de segunda a sábado. Tire dúvidas, marque consultas ou solicite um orçamento.
+              <div className="section-label-light mb-1">Agendamento</div>
+              <h2 className="text-base lg:text-2xl font-bold text-heading mb-1">Entre em contato para agendar sua consulta</h2>
+              <p className="text-xs lg:text-sm text-body mb-2">
+                Estamos no Recreio esperando por você de segunda a sábado.
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <a href="tel:+5521967691358" className="flex items-center gap-3 text-heading hover:text-primary transition-colors">
                   <img
                     src="https://cdn.prod.website-files.com/6426aa53f075ab6c61341787/6426aa53f075ab29bc3417bd_Phone%20icon.svg"
@@ -666,15 +673,15 @@ export default function App() {
             </div>
 
             {/* Contact form */}
-            <div className="flex-1 w-full bg-white rounded-[20px] p-6 lg:p-8 shadow-sm relative overflow-hidden">
-              <form onSubmit={handleContactSubmit} className="space-y-3 relative z-10">
+            <div className="flex-1 w-full bg-white rounded-[16px] lg:rounded-[20px] p-3 lg:p-8 shadow-sm relative overflow-hidden">
+              <form onSubmit={handleContactSubmit} className="space-y-2 relative z-10">
                 <input
                   required
                   type="text"
                   placeholder="Nome"
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
-                  className="form-input h-11"
+                  className="form-input h-10"
                 />
                 <input
                   required
@@ -682,7 +689,7 @@ export default function App() {
                   placeholder="Telefone"
                   value={contactPhone}
                   onChange={(e) => setContactPhone(e.target.value)}
-                  className="form-input h-11"
+                  className="form-input h-10"
                 />
                 <input
                   required
@@ -690,12 +697,12 @@ export default function App() {
                   placeholder="Email"
                   value={contactEmail}
                   onChange={(e) => setContactEmail(e.target.value)}
-                  className="form-input h-11"
+                  className="form-input h-10"
                 />
                 <select
                   value={contactType}
                   onChange={(e) => setContactType(e.target.value)}
-                  className="form-input h-11"
+                  className="form-input h-10"
                 >
                   <option value="">Tipo de Atendimento</option>
                   <option value="Ortopedia Adulto">Ortopedia Adulto</option>
@@ -705,7 +712,7 @@ export default function App() {
                   <option value="Traumatologia">Traumatologia</option>
                 </select>
                 <textarea
-                  rows={3}
+                  rows={2}
                   placeholder="Mensagem"
                   value={contactMsg}
                   onChange={(e) => setContactMsg(e.target.value)}
@@ -718,17 +725,17 @@ export default function App() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="p-3 bg-primary/10 border border-primary/20 rounded-xl flex items-center gap-2 text-primary text-sm"
+                      className="p-2 bg-primary/10 border border-primary/20 rounded-lg flex items-center gap-2 text-primary text-xs"
                     >
                       <ThumbsUp className="w-4 h-4 shrink-0" />
-                      <span>Você será direcionado para o WhatsApp com sua mensagem já preenchida.</span>
+                      <span>Você será direcionado para o WhatsApp.</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
 
                 <button
                   type="submit"
-                  className="btn-primary w-full justify-center h-11 text-sm"
+                  className="btn-primary w-full justify-center h-10 text-sm"
                 >
                   Enviar Mensagem
                 </button>
@@ -741,7 +748,7 @@ export default function App() {
       </section>
 
       {/* FOOTER — MedPro multi-column style */}
-      <footer className="bg-light-high text-white py-8 lg:py-10">
+      <footer className="bg-light-high text-white py-6 lg:py-10">
         <div className="container-medpro">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 mb-8">
             {/* Brand column */}
@@ -774,10 +781,16 @@ export default function App() {
               </div>
             </div>
 
-            {/* Services */}
+            {/* Services — mobile accordion */}
             <div>
-              <h4 className="footer-heading">Services</h4>
-              <ul className="space-y-2">
+              <button
+                onClick={() => setOpenFooterSections(prev => ({ ...prev, services: !prev.services }))}
+                className="footer-heading w-full flex items-center justify-between lg:cursor-default"
+              >
+                Services
+                <ChevronDown className="w-4 h-4 lg:hidden transition-transform" style={{ transform: openFooterSections.services ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+              </button>
+              <ul className={`space-y-2 overflow-hidden transition-all duration-300 ${openFooterSections.services ? 'max-h-60 opacity-100 mt-2' : 'max-h-0 opacity-0 lg:max-h-60 lg:opacity-100 lg:mt-0'}`}>
                 {['Ortopedia Adulto', 'Medicina Esportiva', 'Saúde da Coluna', 'Traumatologia', 'Fisioterapia'].map((link) => (
                   <li key={link}>
                     <a href="#servicos" className="footer-link">{link}</a>
@@ -786,10 +799,16 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Health Checkup */}
+            {/* Health Checkup — mobile accordion */}
             <div>
-              <h4 className="footer-heading">Health Checkup</h4>
-              <ul className="space-y-2">
+              <button
+                onClick={() => setOpenFooterSections(prev => ({ ...prev, checkup: !prev.checkup }))}
+                className="footer-heading w-full flex items-center justify-between lg:cursor-default"
+              >
+                Health Checkup
+                <ChevronDown className="w-4 h-4 lg:hidden transition-transform" style={{ transform: openFooterSections.checkup ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+              </button>
+              <ul className={`space-y-2 overflow-hidden transition-all duration-300 ${openFooterSections.checkup ? 'max-h-60 opacity-100 mt-2' : 'max-h-0 opacity-0 lg:max-h-60 lg:opacity-100 lg:mt-0'}`}>
                 {['Check-up Ortopédico', 'Avaliação Postural', 'Reabilitação', 'Cirurgia Minimamente Invasiva', 'Terapia da Dor'].map((link) => (
                   <li key={link}>
                     <a href="#servicos" className="footer-link">{link}</a>
@@ -798,10 +817,16 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Quick Links */}
+            {/* Quick Links — mobile accordion */}
             <div>
-              <h4 className="footer-heading">Quick Links</h4>
-              <ul className="space-y-2">
+              <button
+                onClick={() => setOpenFooterSections(prev => ({ ...prev, links: !prev.links }))}
+                className="footer-heading w-full flex items-center justify-between lg:cursor-default"
+              >
+                Quick Links
+                <ChevronDown className="w-4 h-4 lg:hidden transition-transform" style={{ transform: openFooterSections.links ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+              </button>
+              <ul className={`space-y-2 overflow-hidden transition-all duration-300 ${openFooterSections.links ? 'max-h-60 opacity-100 mt-2' : 'max-h-0 opacity-0 lg:max-h-60 lg:opacity-100 lg:mt-0'}`}>
                 {['Home', 'Especialidades', 'Sobre', 'Depoimentos', 'Contato'].map((link) => (
                   <li key={link}>
                     <a href={`#${link.toLowerCase()}`} className="footer-link">{link}</a>
