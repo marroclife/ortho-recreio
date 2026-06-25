@@ -138,14 +138,14 @@ export default function App() {
     <div className="min-h-screen bg-cream font-sans text-body overflow-x-hidden">
 
       {/* TOP UTILITY BAR */}
-      <div className="bg-light-high text-white/90 text-sm py-2.5">
-        <div className="container-medpro flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div className="hidden sm:block bg-light-high text-white/90 text-sm py-2.5">
+        <div className="container-medpro flex flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-6">
             <a href="#" className="flex items-center gap-2 hover:text-white transition-colors">
               <MapPin className="w-4 h-4" />
               <span>Av. das Américas, 18250 - Sl 302, Recreio</span>
             </a>
-            <a href="mailto:contato@orthorecreio.com.br" className="hidden sm:flex items-center gap-2 hover:text-white transition-colors">
+            <a href="mailto:contato@orthorecreio.com.br" className="flex items-center gap-2 hover:text-white transition-colors">
               <Mail className="w-4 h-4" />
               <span>contato@orthorecreio.com.br</span>
             </a>
@@ -158,9 +158,9 @@ export default function App() {
       </div>
 
       {/* STICKY HEADER / NAVBAR */}
-      <div className="sticky top-0 z-40 w-full pt-4 pb-4 px-4">
+      <div className="sticky top-0 z-40 w-full pt-2 lg:pt-4 pb-2 lg:pb-4 px-2 lg:px-4">
         <div className="container-medpro">
-          <header className="bg-white rounded-[10px] shadow-[0_10px_30px_rgba(0,0,0,0.05)] h-[100px] px-6 flex items-center justify-between">
+          <header className="bg-white rounded-[10px] shadow-[0_10px_30px_rgba(0,0,0,0.05)] h-[70px] lg:h-[100px] px-4 lg:px-6 flex items-center justify-between">
             {/* Logo */}
             <a href="#home" className="flex items-center gap-3 shrink-0">
               <div className="w-12 h-12">
@@ -241,21 +241,57 @@ export default function App() {
       </div>
 
       {/* HERO SECTION */}
-      <section id="home" className="relative pt-8 pb-0 overflow-hidden">
+      <section id="home" className="relative pt-2 lg:pt-8 pb-0 overflow-hidden">
         {/* MedPro hero gradient */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#d4fffc] via-[#c9f9f6] to-[#f0fffe]" />
 
         <div className="container-medpro relative z-10">
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
+          {/* Mobile compact hero */}
+          <div className="lg:hidden flex flex-col items-center text-center py-4">
+            <div className="text-sm text-primary mb-2">Bem-vindo à Ortho Recreio</div>
+            <h1 className="text-[1.65rem] leading-[1.15] mb-4 max-w-[340px]">
+              Cuidamos da sua vida em movimento
+            </h1>
+
+            <div className="flex flex-col items-center gap-3 mb-4 w-full">
+              <button
+                onClick={() => triggerBooking()}
+                className="btn-primary h-[44px] w-[180px] text-sm"
+              >
+                Discover More
+              </button>
+              <a href="tel:+5521967691358" className="flex items-center gap-2 text-heading">
+                <div className="text-xs uppercase tracking-wider text-body text-left leading-tight">
+                  <div>for appointment</div>
+                  <div className="flex items-center gap-2 font-bold text-heading text-base">
+                    <Phone className="w-4 h-4 text-primary" />
+                    (21) 96769-1358
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div className="inline-flex items-center gap-2 bg-white rounded-full shadow-md px-4 py-2 mb-2">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <Heart className="w-4 h-4 text-primary" />
+              </div>
+              <div className="text-sm font-bold text-heading leading-tight text-left">
+                Mais de 1.500 pacientes atendidos!
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop hero */}
+          <div className="hidden lg:flex flex-row items-center justify-center gap-20">
             {/* Text content */}
-            <div className="max-w-[550px] text-center lg:text-left">
-              <div className="h5 text-primary mb-5">Bem-vindo à Ortho Recreio</div>
+            <div className="max-w-[550px] text-left">
+              <div className="lg:h5 text-primary mb-5">Bem-vindo à Ortho Recreio</div>
               <div className="max-w-[550px] mb-12">
                 <h1 className="display-title">
                   A clínica que cuida da sua vida em movimento
                 </h1>
               </div>
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
+              <div className="flex flex-row items-center justify-start gap-6">
                 <button
                   onClick={() => triggerBooking()}
                   className="btn-primary h-[50px] w-[180px] text-base"
