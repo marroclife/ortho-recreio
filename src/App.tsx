@@ -254,7 +254,7 @@ export default function App() {
       </div>
 
       {/* HERO SECTION */}
-      <section id="home" className="relative pt-2 lg:pt-4 pb-4 lg:pb-6 overflow-hidden">
+      <section id="home" className="relative pt-2 lg:pt-4 pb-4 lg:pb-6">
         {/* MedPro hero gradient */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#d4fffc] via-[#c9f9f6] to-[#f0fffe]" />
 
@@ -303,9 +303,9 @@ export default function App() {
           </div>
 
           {/* Desktop hero */}
-          <div className="hidden lg:flex flex-row items-end justify-between gap-6 h-[300px] pb-0">
+          <div className="hidden lg:flex flex-row items-end justify-between gap-6 h-[420px] pb-0">
             {/* Text content */}
-            <div className="w-full max-w-[440px] text-left pb-8 pl-1">
+            <div className="w-full max-w-[440px] text-left pb-12 pl-1">
               <div className="text-sm font-semibold text-primary mb-2 tracking-wide">Bem-vindo à Ortho Recreio</div>
               <h1 className="display-title text-[1.5rem] leading-[1.05] mb-4">
                 A clínica que cuida da sua vida em movimento
@@ -330,18 +330,18 @@ export default function App() {
             </div>
 
             {/* Hero image */}
-            <div className="relative w-[420px] h-[300px] shrink-0 self-end overflow-visible">
+            <div className="relative w-[420px] h-[400px] shrink-0 self-end overflow-visible">
               {/* Radial glow behind doctor */}
               <div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 w-[85%] h-[90%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.85)_0%,rgba(255,255,255,0.4)_40%,transparent_70%)] blur-sm pointer-events-none" />
 
               <img
                 src={HERO_IMAGE}
                 alt="Dr. Jorge Mendonça — Ortopedista e Traumatologista"
-                className="relative z-10 w-full h-full object-cover object-bottom hero-glow"
+                className="relative z-10 w-full h-full object-contain object-top hero-glow"
               />
 
               {/* Floating badge */}
-              <div className="absolute bottom-16 -left-2 z-20 bg-white rounded-[16px] shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-3 flex items-center gap-2 animate-float">
+              <div className="absolute bottom-20 -left-2 z-20 bg-white rounded-[16px] shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-3 flex items-center gap-2 animate-float">
                 <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                   <Heart className="w-4 h-4 text-primary" />
                 </div>
