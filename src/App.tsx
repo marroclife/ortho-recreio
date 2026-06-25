@@ -17,7 +17,7 @@ import BookingModal from './components/BookingModal';
 import { SPECIALTIES, DOCTORS, TESTIMONIALS } from './data';
 import { Specialty, Doctor } from './types';
 
-import HERO_IMAGE from './assets/images/doctor-hero.png';
+import HERO_IMAGE from './assets/images/dr-jorge-hero.png';
 import DOCTOR_PORTRAIT from './assets/images/doctor-portrait.png';
 import LOGO_IMAGE from './assets/images/logo-orthorecreio.png';
 
@@ -327,8 +327,8 @@ export default function App() {
 
               <img
                 src={HERO_IMAGE}
-                alt="Doutor da Ortho Recreio"
-                className="relative z-10 w-full h-auto object-contain drop-shadow-2xl"
+                alt="Dr. Jorge Mendonça — Ortopedista e Traumatologista"
+                className="relative z-10 w-full h-auto object-contain hero-glow"
               />
             </div>
           </div>
