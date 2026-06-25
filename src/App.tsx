@@ -92,7 +92,13 @@ export default function App() {
 
   const currentTestimonial = TESTIMONIALS[activeTestimonialIdx];
 
-  // Tab content for treatment plans
+  // Carousel items for Services & Treatments
+  const SERVICES_CAROUSEL = [
+    ...SPECIALTIES.map(spec => ({ id: spec.id, title: spec.title, icon: spec.iconName })),
+    { id: 'fisioterapia', title: 'Fisioterapia', icon: 'HeartPulse' },
+    { id: 'reabilitacao', title: 'Reabilitação', icon: 'Activity' },
+    { id: 'dor-cronica', title: 'Dor Crônica', icon: 'ShieldAlert' }
+  ];
   const TREATMENT_PLANS = [
     {
       id: 'adulto',
@@ -160,7 +166,7 @@ export default function App() {
       {/* STICKY HEADER / NAVBAR */}
       <div className="sticky top-0 z-40 w-full pt-2 lg:pt-4 pb-2 lg:pb-4 px-2 lg:px-4">
         <div className="container-medpro">
-          <header className="bg-white rounded-[10px] shadow-[0_10px_30px_rgba(0,0,0,0.05)] h-[70px] lg:h-[100px] px-4 lg:px-6 flex items-center justify-between">
+          <header className="bg-white rounded-[10px] shadow-[0_10px_30px_rgba(0,0,0,0.05)] h-[70px] px-4 lg:px-6 flex items-center justify-between">
             {/* Logo */}
             <a href="#home" className="flex items-center gap-3 shrink-0">
               <div className="w-12 h-12">
@@ -241,22 +247,22 @@ export default function App() {
       </div>
 
       {/* HERO SECTION */}
-      <section id="home" className="relative pt-2 lg:pt-8 pb-0 overflow-hidden">
+      <section id="home" className="relative pt-2 lg:pt-4 pb-4 lg:pb-6 overflow-hidden">
         {/* MedPro hero gradient */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#d4fffc] via-[#c9f9f6] to-[#f0fffe]" />
 
         <div className="container-medpro relative z-10">
           {/* Mobile compact hero */}
-          <div className="lg:hidden flex flex-col items-center text-center py-4">
+          <div className="lg:hidden flex flex-col items-center text-center py-3">
             <div className="text-sm text-primary mb-2">Bem-vindo à Ortho Recreio</div>
-            <h1 className="text-[1.65rem] leading-[1.15] mb-4 max-w-[340px]">
+            <h1 className="text-[1.55rem] leading-[1.15] mb-3 max-w-[340px]">
               Cuidamos da sua vida em movimento
             </h1>
 
-            <div className="flex flex-col items-center gap-3 mb-4 w-full">
+            <div className="flex flex-col items-center gap-3 mb-3 w-full">
               <button
                 onClick={() => triggerBooking()}
-                className="btn-primary h-[44px] w-[180px] text-sm"
+                className="btn-primary h-[40px] w-[160px] text-sm"
               >
                 Saiba Mais
               </button>
@@ -271,8 +277,17 @@ export default function App() {
               </a>
             </div>
 
-            <div className="inline-flex items-center gap-2 bg-white rounded-full shadow-md px-4 py-2 mb-2">
-              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+            <div className="relative w-[220px] h-[220px] mb-3">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] aspect-square rounded-full bg-gradient-to-tr from-white/60 to-white/20" />
+              <img
+                src={HERO_IMAGE}
+                alt="Dr. Jorge Mendonça — Ortopedista e Traumatologista"
+                className="relative z-10 w-full h-full object-contain hero-glow"
+              />
+            </div>
+
+            <div className="inline-flex items-center gap-2 bg-white rounded-full shadow-md px-3 py-1.5">
+              <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
                 <Heart className="w-4 h-4 text-primary" />
               </div>
               <div className="text-sm font-bold text-heading leading-tight text-left">
@@ -282,27 +297,25 @@ export default function App() {
           </div>
 
           {/* Desktop hero */}
-          <div className="hidden lg:flex flex-row items-center justify-center gap-20">
+          <div className="hidden lg:flex flex-row items-center justify-center gap-10 max-h-[280px] py-2">
             {/* Text content */}
-            <div className="max-w-[550px] text-left">
-              <div className="lg:h5 text-primary mb-5">Bem-vindo à Ortho Recreio</div>
-              <div className="max-w-[550px] mb-12">
-                <h1 className="display-title">
-                  A clínica que cuida da sua vida em movimento
-                </h1>
-              </div>
-              <div className="flex flex-row items-center justify-start gap-6">
+            <div className="max-w-[480px] text-left py-1">
+              <div className="text-base text-primary mb-2">Bem-vindo à Ortho Recreio</div>
+              <h1 className="display-title text-[2.5rem] leading-[1.15] mb-4">
+                A clínica que cuida da sua vida em movimento
+              </h1>
+              <div className="flex flex-row items-center justify-start gap-4">
                 <button
                   onClick={() => triggerBooking()}
-                  className="btn-primary h-[50px] w-[180px] text-base"
+                  className="btn-primary h-[40px] w-[150px] text-sm"
                 >
                   Saiba Mais
                 </button>
-                <a href="tel:+5521967691358" className="flex items-center gap-3 text-heading hover:text-primary transition-colors">
+                <a href="tel:+5521967691358" className="flex items-center gap-2 text-heading hover:text-primary transition-colors">
                   <div className="text-xs uppercase tracking-wider text-body text-left leading-tight">
                     <div>Para agendamento</div>
-                    <div className="flex items-center gap-2 font-bold text-heading text-lg">
-                      <Phone className="w-5 h-5 text-primary" />
+                    <div className="flex items-center gap-2 font-bold text-heading text-base">
+                      <Phone className="w-4 h-4 text-primary" />
                       (21) 96769-1358
                     </div>
                   </div>
@@ -311,24 +324,24 @@ export default function App() {
             </div>
 
             {/* Hero image */}
-            <div className="relative max-w-[532px] w-full">
+            <div className="relative w-[360px] h-[260px] shrink-0">
               {/* Floating badge */}
-              <div className="absolute top-8 -left-4 z-20 bg-white rounded-[20px] shadow-[0_10px_30px_rgba(0,0,0,0.1)] p-4 flex items-center gap-3 animate-float">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Heart className="w-5 h-5 text-primary" />
+              <div className="absolute top-2 -left-2 z-20 bg-white rounded-[14px] shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-2.5 flex items-center gap-2 animate-float">
+                <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Heart className="w-3.5 h-3.5 text-primary" />
                 </div>
-                <div className="text-sm font-bold text-heading leading-tight">
+                <div className="text-xs font-bold text-heading leading-tight">
                   Mais de 1.500<br />pacientes atendidos!
                 </div>
               </div>
 
               {/* Circle background */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] aspect-square rounded-full bg-gradient-to-tr from-white/60 to-white/20" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[72%] aspect-square rounded-full bg-gradient-to-tr from-white/60 to-white/20" />
 
               <img
                 src={HERO_IMAGE}
                 alt="Dr. Jorge Mendonça — Ortopedista e Traumatologista"
-                className="relative z-10 w-full h-auto object-contain hero-glow"
+                className="relative z-10 w-full h-full object-contain object-bottom hero-glow"
               />
             </div>
           </div>
@@ -336,21 +349,21 @@ export default function App() {
       </section>
 
       {/* TREATMENT / SPECIALTIES SECTION */}
-      <section id="especialidades" className="py-28 lg:py-36 bg-primary relative overflow-hidden">
+      <section id="especialidades" className="py-16 lg:py-24 bg-primary relative overflow-hidden">
         <div className="container-medpro relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
             {/* Left text */}
-            <div className="lg:max-w-[420px]">
-              <h2 className="h2 text-white mb-6">
+            <div className="lg:max-w-[380px]">
+              <h2 className="h2 text-white mb-4 text-[2rem] lg:text-[2.2rem]">
                 A Ortho Recreio se dedica a oferecer o melhor tratamento.
               </h2>
-              <p className="text-white/80 body-variant-3">
+              <p className="text-white/80 text-base lg:text-lg leading-relaxed">
                 Unimos ortopedia avançada, reabilitação funcional e tecnologia de ponta para restaurar sua mobilidade e qualidade de vida.
               </p>
             </div>
 
             {/* Cards - MedPro style: image background + floating white box at bottom */}
-            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 h-auto lg:h-[220px]">
               {[
                 { spec: SPECIALTIES[0], image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=500&fit=crop' },
                 { spec: SPECIALTIES[1], image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400&h=500&fit=crop' },
@@ -359,16 +372,16 @@ export default function App() {
                 <button
                   key={spec.id}
                   onClick={() => triggerBooking(spec.id)}
-                  className="group relative aspect-[4/5] rounded-[20px] overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,0,0,0.25)] shadow-[0_15px_40px_rgba(0,0,0,0.15)]"
+                  className="group relative h-[220px] rounded-[16px] overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] shadow-[0_12px_32px_rgba(0,0,0,0.15)]"
                   style={{
                     backgroundImage: `url(${image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}
                 >
-                  <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-[85%] bg-white rounded-[15px] p-5 shadow-[0_10px_30px_rgba(0,0,0,0.12)] text-center transition-transform duration-300 group-hover:-translate-y-2">
-                    <span className="text-sm text-primary block mb-1 font-semibold">{spec.tags[0]}</span>
-                    <h3 className="h5 text-heading">{spec.title}</h3>
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-[88%] bg-white rounded-[12px] p-3 shadow-[0_8px_24px_rgba(0,0,0,0.12)] text-center transition-transform duration-300 group-hover:-translate-y-2">
+                    <span className="text-xs text-primary block mb-0.5 font-semibold">{spec.tags[0]}</span>
+                    <h3 className="text-sm font-bold text-heading">{spec.title}</h3>
                   </div>
                 </button>
               ))}
@@ -377,80 +390,66 @@ export default function App() {
         </div>
       </section>
 
-      {/* SERVICES GRID SECTION — MedPro style: icon circles in grid, not marquee */}
-      <section id="servicos" className="py-28 lg:py-36 bg-cream">
-        <div className="container-medpro mb-14">
+      {/* SERVICES MARQUEE SECTION — MedPro style: right-to-left carousel */}
+      <section id="servicos" className="py-12 lg:py-16 bg-cream">
+        <div className="container-medpro mb-8">
           <div className="text-center max-w-[570px] mx-auto">
-            <div className="section-label justify-center mb-4">
+            <div className="section-label justify-center mb-2">
               <span>Services & Treatments</span>
             </div>
-            <h2 className="h2 mb-6">
+            <h2 className="text-2xl lg:text-[2.2rem] font-bold text-heading mb-2">
               Mais de 20 especialidades e serviços de saúde
             </h2>
           </div>
         </div>
 
-        <div className="container-medpro">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
-            {SPECIALTIES.map((spec) => (
-              <button
-                key={spec.id}
-                onClick={() => triggerBooking(spec.id)}
-                className="group flex flex-col items-center text-center"
-              >
-                <div className="service-icon-circle group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  {getSpecialtyIcon(spec.iconName, 'w-8 h-8')}
-                </div>
-                <span className="h6 group-hover:text-primary transition-colors">
-                  {spec.title}
-                </span>
-              </button>
-            ))}
-            {[
-              { title: 'Fisioterapia', icon: 'HeartPulse' },
-              { title: 'Traumatologia', icon: 'Flame' },
-              { title: 'Reabilitação', icon: 'Activity' },
-              { title: 'Dor Crônica', icon: 'ShieldAlert' },
-            ].map((item) => (
-              <button
-                key={item.title}
-                onClick={() => triggerBooking()}
-                className="group flex flex-col items-center text-center"
-              >
-                <div className="service-icon-circle group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                  {getSpecialtyIcon(item.icon, 'w-8 h-8')}
-                </div>
-                <span className="h6 group-hover:text-primary transition-colors">
-                  {item.title}
-                </span>
-              </button>
-            ))}
+        <div className="relative overflow-hidden mb-8 group">
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-cream to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-cream to-transparent z-10 pointer-events-none" />
+
+          <div className="marquee-track">
+            <div className="marquee-content">
+              {[...SERVICES_CAROUSEL, ...SERVICES_CAROUSEL, ...SERVICES_CAROUSEL, ...SERVICES_CAROUSEL].map((item, idx) => (
+                <button
+                  key={`${item.title}-${idx}`}
+                  onClick={() => triggerBooking(item.id)}
+                  className="marquee-item group"
+                >
+                  <div className="service-icon-circle group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                    {getSpecialtyIcon(item.icon, 'w-6 h-6')}
+                  </div>
+                  <span className="text-xs font-bold text-heading group-hover:text-primary transition-colors text-center">
+                    {item.title}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="text-center mt-14">
-          <button onClick={() => triggerBooking()} className="btn-primary">
+        <div className="text-center">
+          <button onClick={() => triggerBooking()} className="btn-primary h-10 px-5 text-sm">
             Ver todos os Serviços
           </button>
         </div>
       </section>
 
       {/* WHY CHOOSE US SECTION */}
-      <section id="sobre" className="py-28 lg:py-36 bg-light-high text-white relative overflow-hidden">
+      <section id="sobre" className="py-8 lg:py-10 bg-light-high text-white relative overflow-hidden">
         <div className="container-medpro">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 items-stretch">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-5 items-stretch">
             {/* Differentials card */}
-            <div className="card-white p-10 lg:p-12 lg:max-w-[500px]">
-              <h3 className="h4 text-heading mb-8">Por que nos escolher?</h3>
+            <div className="card-white p-5 lg:p-6 lg:max-w-[400px]">
+              <h3 className="text-base font-bold text-heading mb-4">Por que nos escolher?</h3>
 
-              <div className="space-y-5">
+              <div className="space-y-2">
                 {[
                   { title: 'Segurança em primeiro lugar', desc: 'Protocolos rigorosos de biossegurança e esterilização.' },
-                  { title: 'Foco no paciente', desc: 'Atendimento humanizado, com acompanhamento próximo de cada caso.' },
-                  { title: 'Tecnologia de ponta', desc: 'Equipamentos modernos para diagnóstico preciso e cirurgias minimamente invasivas.' },
+                  { title: 'Foco no paciente', desc: 'Atendimento humanizado e acompanhamento próximo.' },
+                  { title: 'Tecnologia de ponta', desc: 'Equipamentos modernos para diagnóstico preciso.' },
                   { title: 'Preço transparente', desc: 'Orçamento claro e honesto, sem surpresas.' },
-                  { title: 'Cuidado coordenado', desc: 'Equipe multidisciplinar alinhada no seu plano de tratamento.' },
-                  { title: 'Recuperação acelerada', desc: 'Fisioterapia integrada para você voltar a se mover mais rápido.' },
+                  { title: 'Cuidado coordenado', desc: 'Equipe multidisciplinar alinhada no plano de tratamento.' },
+                  { title: 'Recuperação acelerada', desc: 'Fisioterapia integrada para você voltar a se mover.' },
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-4">
                     <img
@@ -467,15 +466,15 @@ export default function App() {
             </div>
 
             {/* Right content */}
-            <div className="flex-1 flex flex-col justify-center">
-              <h2 className="h2 text-white mb-6">
+            <div className="flex-1 flex flex-col justify-center py-1">
+              <h2 className="text-xl lg:text-2xl font-bold text-white mb-2">
                 Dedicados a oferecer o melhor tratamento ortopédico.
               </h2>
-              <p className="text-white/80 body-variant-3 mb-8">
+              <p className="text-white/80 text-sm lg:text-base leading-relaxed mb-4">
                 Na Ortho Recreio, unimos experiência clínica, tecnologia avançada e um ambiente acolhedor
                 para cuidar da sua saúde articular, muscular e do seu bem-estar geral.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <button
                   onClick={() => triggerBooking()}
                   className="btn-secondary"
@@ -497,64 +496,64 @@ export default function App() {
       </section>
 
       {/* HEALTH CHECKUP PLANS / TABS SECTION — MedPro style: vertical tabs left, content right */}
-      <section className="py-28 lg:py-36 bg-light-low">
+      <section className="py-8 lg:py-10 bg-light-low">
         <div className="container-medpro">
-          <div className="text-center max-w-[600px] mx-auto mb-14">
-            <h2 className="h2 mb-4">Planos de Tratamento</h2>
-            <p className="body-variant-3">
+          <div className="text-center max-w-[600px] mx-auto mb-6">
+            <h2 className="text-2xl lg:text-[2.2rem] font-bold text-heading mb-2">Planos de Tratamento</h2>
+            <p className="text-base text-body">
               Protocolos personalizados para cada fase da sua recuperação ortopédica.
             </p>
           </div>
 
           {/* Vertical tabs layout */}
-          <div className="max-w-[1000px] mx-auto bg-white rounded-[24px] p-6 lg:p-10 shadow-sm">
-            <div className="flex flex-col lg:flex-row gap-8">
+          <div className="max-w-[900px] mx-auto bg-white rounded-[20px] p-4 lg:p-6 shadow-sm">
+            <div className="flex flex-col lg:flex-row gap-4">
               {/* Tabs — vertical on desktop */}
-              <div className="lg:w-[280px] flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
+              <div className="lg:w-[220px] flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
                 {TREATMENT_PLANS.map((plan) => (
                   <button
                     key={plan.id}
                     onClick={() => setActiveTab(plan.id)}
-                    className={`text-left px-5 py-4 rounded-xl font-bold transition-all whitespace-nowrap lg:whitespace-normal flex items-center gap-3 ${
+                    className={`text-left px-3 py-2.5 rounded-lg font-bold transition-all whitespace-nowrap lg:whitespace-normal flex items-center gap-2 ${
                       activeTab === plan.id
                         ? 'bg-primary text-white shadow-md'
                         : 'bg-[#f0fffe] text-heading hover:bg-white hover:shadow-sm'
                     }`}
                   >
-                    <plan.icon className="w-5 h-5 shrink-0" />
-                    <span>{plan.label}</span>
+                    <plan.icon className="w-4 h-4 shrink-0" />
+                    <span className="text-sm">{plan.label}</span>
                   </button>
                 ))}
               </div>
 
               {/* Content */}
               <div className="flex-1">
-                <div className="flex flex-col lg:flex-row gap-10 items-center">
-                  <div className="lg:w-[45%]">
+                <div className="flex flex-col lg:flex-row gap-5 items-center">
+                  <div className="lg:w-[40%]">
                     <img
                       src={activePlan.image}
                       alt={activePlan.title}
-                      className="w-full h-[300px] lg:h-[380px] object-cover rounded-[20px]"
+                      className="w-full h-[180px] lg:h-[220px] object-cover rounded-[14px]"
                     />
                   </div>
-                  <div className="lg:w-[55%]">
-                    <h3 className="h3 mb-4">{activePlan.title}</h3>
-                    <p className="body-variant-3 mb-8">
+                  <div className="lg:w-[60%]">
+                    <h3 className="text-lg font-bold text-heading mb-2">{activePlan.title}</h3>
+                    <p className="text-sm text-body mb-3">
                       A Ortho Recreio oferece um cuidado completo, do diagnóstico à reabilitação, para que você recupere sua mobilidade com segurança.
                     </p>
-                    <div className="space-y-4 mb-8">
+                    <div className="space-y-2 mb-4">
                       {activePlan.points.map((point, idx) => (
-                        <div key={idx} className="flex items-start gap-4">
-                          <div className="w-5 h-5 rounded-full bg-heading flex items-center justify-center mt-1 shrink-0">
-                            <Check className="w-3 h-3 text-white" />
+                        <div key={idx} className="flex items-start gap-2">
+                          <div className="w-4 h-4 rounded-full bg-heading flex items-center justify-center mt-0.5 shrink-0">
+                            <Check className="w-2.5 h-2.5 text-white" />
                           </div>
-                          <span className="body-text">{point}</span>
+                          <span className="text-sm text-body">{point}</span>
                         </div>
                       ))}
                     </div>
                     <button
                       onClick={() => triggerBooking()}
-                      className="btn-primary"
+                      className="btn-primary h-9 px-4 text-sm"
                     >
                       Agendar Consulta
                     </button>
@@ -567,15 +566,15 @@ export default function App() {
       </section>
 
       {/* TESTIMONIALS SECTION */}
-      <section id="depoimentos" className="py-28 lg:py-36 bg-light-high text-white relative overflow-hidden">
+      <section id="depoimentos" className="py-8 lg:py-10 bg-light-high text-white relative overflow-hidden">
         <div className="container-medpro">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
             {/* Testimonial text */}
             <div className="lg:w-[55%]">
               <img
                 src="https://cdn.prod.website-files.com/6426aa53f075ab6c61341787/6426aa53f075ab590b3417b7_Testimonial%20Quote.svg"
                 alt="quote"
-                className="w-16 h-16 mb-6 opacity-80"
+                className="w-10 h-10 mb-3 opacity-80"
               />
               <AnimatePresence mode="wait">
                 <motion.div
@@ -585,44 +584,44 @@ export default function App() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <blockquote className="text-2xl lg:text-3xl leading-relaxed mb-8 font-serif">
+                  <blockquote className="text-lg lg:text-xl leading-relaxed mb-4 font-serif">
                     “{currentTestimonial.quote}”
                   </blockquote>
-                  <div className="text-lg">
+                  <div className="text-sm">
                     <span className="font-bold text-white">{currentTestimonial.name}</span>
                     <span className="text-white/60"> — {currentTestimonial.age} anos • {currentTestimonial.condition}</span>
                   </div>
                 </motion.div>
               </AnimatePresence>
 
-              <div className="flex items-center gap-4 mt-10">
+              <div className="flex items-center gap-3 mt-4">
                 <button
                   onClick={prevTestimonial}
-                  className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+                  className="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
                 >
-                  <ChevronRight className="w-5 h-5 rotate-180" />
+                  <ChevronRight className="w-4 h-4 rotate-180" />
                 </button>
                 <div className="flex gap-2">
                   {TESTIMONIALS.map((_, idx) => (
                     <button
                       key={idx}
                       onClick={() => setActiveTestimonialIdx(idx)}
-                      className={`w-2.5 h-2.5 rounded-full transition-colors ${activeTestimonialIdx === idx ? 'bg-primary' : 'bg-white/30'}`}
+                      className={`w-2 h-2 rounded-full transition-colors ${activeTestimonialIdx === idx ? 'bg-primary' : 'bg-white/30'}`}
                     />
                   ))}
                 </div>
                 <button
                   onClick={nextTestimonial}
-                  className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+                  className="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
             {/* Testimonial image/video placeholder */}
             <div className="lg:w-[45%] relative">
-              <div className="relative w-[280px] h-[280px] lg:w-[380px] lg:h-[380px] mx-auto rounded-full overflow-hidden border-[6px] border-white/20 shadow-2xl">
+              <div className="relative w-[180px] h-[180px] lg:w-[260px] lg:h-[260px] mx-auto rounded-full overflow-hidden border-[4px] border-white/20 shadow-2xl">
                 <img
                   src={DOCTOR_PORTRAIT}
                   alt="Depoimento Ortho Recreio"
@@ -635,55 +634,55 @@ export default function App() {
       </section>
 
       {/* CONTACT SECTION */}
-      <section id="contato" className="py-28 lg:py-36 bg-light-low">
+      <section id="contato" className="py-8 lg:py-10 bg-light-low">
         <div className="container-medpro">
-          <div className="flex flex-col lg:flex-row gap-16 items-start">
+          <div className="flex flex-col lg:flex-row gap-10 items-start">
             {/* Contact info */}
-            <div className="lg:max-w-[485px]">
-              <div className="section-label-light mb-4">Agendamento</div>
-              <h2 className="h2 mb-6">Get in touch to book your first appointment</h2>
-              <p className="body-variant-3 mb-10">
+            <div className="lg:max-w-[420px]">
+              <div className="section-label-light mb-2">Agendamento</div>
+              <h2 className="text-xl lg:text-2xl font-bold text-heading mb-2">Entre em contato para agendar sua consulta</h2>
+              <p className="text-sm text-body mb-4">
                 Estamos no Recreio esperando por você de segunda a sábado. Tire dúvidas, marque consultas ou solicite um orçamento.
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <a href="tel:+5521967691358" className="flex items-center gap-3 text-heading hover:text-primary transition-colors">
                   <img
                     src="https://cdn.prod.website-files.com/6426aa53f075ab6c61341787/6426aa53f075ab29bc3417bd_Phone%20icon.svg"
                     alt="phone"
-                    className="w-6 h-6"
+                    className="w-5 h-5"
                   />
-                  <span className="font-medium text-lg">(21) 96769-1358</span>
+                  <span className="font-medium">(21) 96769-1358</span>
                 </a>
                 <a href="mailto:contato@orthorecreio.com.br" className="flex items-center gap-3 text-heading hover:text-primary transition-colors">
                   <img
                     src="https://cdn.prod.website-files.com/6426aa53f075ab6c61341787/6426aa53f075ab700c3417bc_mail%20Icon.svg"
                     alt="mail"
-                    className="w-6 h-6"
+                    className="w-5 h-5"
                   />
-                  <span className="font-medium text-lg">contato@orthorecreio.com.br</span>
+                  <span className="font-medium">contato@orthorecreio.com.br</span>
                 </a>
               </div>
             </div>
 
             {/* Contact form */}
-            <div className="flex-1 w-full bg-white rounded-[20px] p-8 lg:p-10 shadow-sm relative overflow-hidden">
-              <form onSubmit={handleContactSubmit} className="space-y-4 relative z-10">
+            <div className="flex-1 w-full bg-white rounded-[20px] p-6 lg:p-8 shadow-sm relative overflow-hidden">
+              <form onSubmit={handleContactSubmit} className="space-y-3 relative z-10">
                 <input
                   required
                   type="text"
-                  placeholder="Name"
+                  placeholder="Nome"
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
-                  className="form-input"
+                  className="form-input h-11"
                 />
                 <input
                   required
                   type="tel"
-                  placeholder="Phone"
+                  placeholder="Telefone"
                   value={contactPhone}
                   onChange={(e) => setContactPhone(e.target.value)}
-                  className="form-input"
+                  className="form-input h-11"
                 />
                 <input
                   required
@@ -691,14 +690,14 @@ export default function App() {
                   placeholder="Email"
                   value={contactEmail}
                   onChange={(e) => setContactEmail(e.target.value)}
-                  className="form-input"
+                  className="form-input h-11"
                 />
                 <select
                   value={contactType}
                   onChange={(e) => setContactType(e.target.value)}
-                  className="form-input"
+                  className="form-input h-11"
                 >
-                  <option value="">Select Appointment Type</option>
+                  <option value="">Tipo de Atendimento</option>
                   <option value="Ortopedia Adulto">Ortopedia Adulto</option>
                   <option value="Medicina Esportiva">Medicina Esportiva</option>
                   <option value="Saúde da Coluna">Saúde da Coluna</option>
@@ -706,8 +705,8 @@ export default function App() {
                   <option value="Traumatologia">Traumatologia</option>
                 </select>
                 <textarea
-                  rows={4}
-                  placeholder="Message"
+                  rows={3}
+                  placeholder="Mensagem"
                   value={contactMsg}
                   onChange={(e) => setContactMsg(e.target.value)}
                   className="form-input resize-none"
@@ -729,7 +728,7 @@ export default function App() {
 
                 <button
                   type="submit"
-                  className="btn-primary w-full justify-center"
+                  className="btn-primary w-full justify-center h-11 text-sm"
                 >
                   Enviar Mensagem
                 </button>
@@ -742,25 +741,25 @@ export default function App() {
       </section>
 
       {/* FOOTER — MedPro multi-column style */}
-      <footer className="bg-light-high text-white py-16 lg:py-20">
+      <footer className="bg-light-high text-white py-8 lg:py-10">
         <div className="container-medpro">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 mb-8">
             {/* Brand column */}
             <div className="lg:col-span-1">
-              <a href="#home" className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+              <a href="#home" className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                   <img
                     src={LOGO_IMAGE}
                     alt="Ortho Recreio"
-                    className="w-8 h-8 object-contain"
+                    className="w-7 h-7 object-contain"
                   />
                 </div>
-                <span className="font-bold text-xl text-white tracking-tight">Ortho Recreio</span>
+                <span className="font-bold text-lg text-white tracking-tight">Ortho Recreio</span>
               </a>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
                 <button
                   onClick={() => triggerBooking()}
-                  className="btn-ghost justify-start"
+                  className="btn-ghost justify-start py-2 px-3 text-sm"
                 >
                   Agendar Consulta
                 </button>
@@ -768,7 +767,7 @@ export default function App() {
                   href="https://wa.me/5521967691358"
                   target="_blank"
                   rel="noreferrer"
-                  className="btn-ghost justify-start"
+                  className="btn-ghost justify-start py-2 px-3 text-sm"
                 >
                   WhatsApp da Clínica
                 </a>
@@ -778,7 +777,7 @@ export default function App() {
             {/* Services */}
             <div>
               <h4 className="footer-heading">Services</h4>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {['Ortopedia Adulto', 'Medicina Esportiva', 'Saúde da Coluna', 'Traumatologia', 'Fisioterapia'].map((link) => (
                   <li key={link}>
                     <a href="#servicos" className="footer-link">{link}</a>
@@ -790,7 +789,7 @@ export default function App() {
             {/* Health Checkup */}
             <div>
               <h4 className="footer-heading">Health Checkup</h4>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {['Check-up Ortopédico', 'Avaliação Postural', 'Reabilitação', 'Cirurgia Minimamente Invasiva', 'Terapia da Dor'].map((link) => (
                   <li key={link}>
                     <a href="#servicos" className="footer-link">{link}</a>
@@ -802,7 +801,7 @@ export default function App() {
             {/* Quick Links */}
             <div>
               <h4 className="footer-heading">Quick Links</h4>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {['Home', 'Especialidades', 'Sobre', 'Depoimentos', 'Contato'].map((link) => (
                   <li key={link}>
                     <a href={`#${link.toLowerCase()}`} className="footer-link">{link}</a>
@@ -813,18 +812,18 @@ export default function App() {
           </div>
 
           {/* Bottom bar */}
-          <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-white/60 text-sm">
               © {new Date().getFullYear()} Ortho Recreio. Todos os direitos reservados.
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               {[Facebook, Instagram, Linkedin].map((Icon, idx) => (
                 <a
                   key={idx}
                   href="#"
-                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors"
+                  className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-primary transition-colors"
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5" />
                 </a>
               ))}
             </div>

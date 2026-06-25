@@ -334,15 +334,15 @@ body {
 
 /* Service icon circle (MedPro style) */
 .service-icon-circle {
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   background-color: rgba(0, 160, 170, 0.1);
   color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   transition: all 0.3s ease;
 }
 
@@ -451,13 +451,14 @@ body {
   display: flex;
   overflow: hidden;
   width: 100%;
+  padding: 0.25rem 0;
 }
 
 .marquee-content {
   display: flex;
   align-items: center;
-  gap: 3rem;
-  animation: marquee 35s linear infinite;
+  gap: 2rem;
+  animation: marquee 28s linear infinite;
   will-change: transform;
 }
 
@@ -465,8 +466,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  min-width: 160px;
+  gap: 0.5rem;
+  min-width: 120px;
   flex-shrink: 0;
   cursor: pointer;
 }
