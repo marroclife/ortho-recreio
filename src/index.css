@@ -196,7 +196,7 @@ body {
   background-color: var(--color-primary);
   color: white;
   font-weight: 700;
-  border-radius: 6px;
+  border-radius: 3px;
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
@@ -208,7 +208,7 @@ body {
 }
 
 .btn-primary:hover {
-  opacity: 0.8;
+  background-color: var(--color-heading);
   transform: translateY(-1px);
 }
 
@@ -216,7 +216,7 @@ body {
   background-color: var(--color-light-high);
   color: white;
   font-weight: 700;
-  border-radius: 6px;
+  border-radius: 3px;
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
@@ -327,6 +327,14 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.service-icon-circle:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 160, 170, 0.25);
 }
 
 /* Form inputs */
