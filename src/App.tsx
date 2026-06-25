@@ -261,31 +261,30 @@ export default function App() {
         <div className="container-medpro relative z-10">
           {/* Mobile compact hero */}
           <div className="lg:hidden flex flex-col items-center text-center pt-0 pb-2">
-            <div className="text-[11px] text-primary mb-1">Bem-vindo à Ortho Recreio</div>
-            <h1 className="text-[1.4rem] leading-[1.2] mb-2 max-w-[300px]">
-              Cuidamos da sua vida em movimento
+            <div className="text-[11px] font-semibold text-primary mb-1 tracking-wide">Bem-vindo à Ortho Recreio</div>
+            <h1 className="text-[1.35rem] leading-[1.15] mb-2 max-w-[300px]">
+              A clínica que cuida da sua vida em movimento
             </h1>
 
-            <div className="flex flex-row items-center justify-center gap-3 mb-2 w-full">
+            <div className="flex flex-col items-center gap-2 mb-2 w-full">
               <button
                 onClick={() => triggerBooking()}
-                className="btn-primary h-[36px] w-[140px] text-sm"
+                className="btn-primary h-[44px] w-[170px] text-[15px]"
               >
                 Saiba Mais
               </button>
               <a href="tel:+5521967691358" className="flex items-center gap-2 text-heading">
-                <div className="text-[10px] uppercase tracking-wider text-body text-left leading-tight">
+                <div className="text-[11px] uppercase tracking-wider text-body text-left leading-tight">
                   <div>Para agendamento</div>
-                  <div className="flex items-center gap-1.5 font-bold text-heading text-sm">
-                    <Phone className="w-3.5 h-3.5 text-primary" />
+                  <div className="flex items-center gap-1.5 font-bold text-heading text-base">
+                    <Phone className="w-4 h-4 text-primary" />
                     (21) 96769-1358
                   </div>
                 </div>
               </a>
             </div>
 
-            <div className="relative w-[150px] h-[150px] mb-2">
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] aspect-square rounded-full bg-gradient-to-tr from-white/60 to-white/20" />
+            <div className="relative w-[180px] h-[180px] mb-2">
               <img
                 src={HERO_IMAGE}
                 alt="Dr. Jorge Mendonça — Ortopedista e Traumatologista"
@@ -294,8 +293,8 @@ export default function App() {
             </div>
 
             <div className="inline-flex items-center gap-2 bg-white rounded-full shadow-md px-3 py-1.5">
-              <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
-                <Heart className="w-3.5 h-3.5 text-primary" />
+              <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
+                <Heart className="w-4 h-4 text-primary" />
               </div>
               <div className="text-xs font-bold text-heading leading-tight text-left">
                 Mais de 1.500 pacientes atendidos!
@@ -304,22 +303,22 @@ export default function App() {
           </div>
 
           {/* Desktop hero */}
-          <div className="hidden lg:flex flex-row items-center justify-center gap-10 max-h-[280px] py-2">
+          <div className="hidden lg:flex flex-row items-end justify-between gap-6 h-[300px] pb-0">
             {/* Text content */}
-            <div className="max-w-[480px] text-left py-1">
-              <div className="text-base text-primary mb-2">Bem-vindo à Ortho Recreio</div>
-              <h1 className="display-title text-[2.5rem] leading-[1.15] mb-4">
+            <div className="w-full max-w-[440px] text-left pb-8 pl-1">
+              <div className="text-sm font-semibold text-primary mb-2 tracking-wide">Bem-vindo à Ortho Recreio</div>
+              <h1 className="display-title text-[1.5rem] leading-[1.05] mb-4">
                 A clínica que cuida da sua vida em movimento
               </h1>
-              <div className="flex flex-row items-center justify-start gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-start gap-4">
                 <button
                   onClick={() => triggerBooking()}
-                  className="btn-primary h-[40px] w-[150px] text-sm"
+                  className="btn-primary h-[44px] px-10 text-[15px]"
                 >
                   Saiba Mais
                 </button>
                 <a href="tel:+5521967691358" className="flex items-center gap-2 text-heading hover:text-primary transition-colors">
-                  <div className="text-xs uppercase tracking-wider text-body text-left leading-tight">
+                  <div className="text-[11px] uppercase tracking-wider text-body text-left leading-tight">
                     <div>Para agendamento</div>
                     <div className="flex items-center gap-2 font-bold text-heading text-base">
                       <Phone className="w-4 h-4 text-primary" />
@@ -331,25 +330,25 @@ export default function App() {
             </div>
 
             {/* Hero image */}
-            <div className="relative w-[360px] h-[260px] shrink-0">
+            <div className="relative w-[420px] h-[300px] shrink-0 self-end overflow-visible">
+              {/* Radial glow behind doctor */}
+              <div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 w-[85%] h-[90%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.85)_0%,rgba(255,255,255,0.4)_40%,transparent_70%)] blur-sm pointer-events-none" />
+
+              <img
+                src={HERO_IMAGE}
+                alt="Dr. Jorge Mendonça — Ortopedista e Traumatologista"
+                className="relative z-10 w-full h-full object-cover object-bottom hero-glow"
+              />
+
               {/* Floating badge */}
-              <div className="absolute top-2 -left-2 z-20 bg-white rounded-[14px] shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-2.5 flex items-center gap-2 animate-float">
-                <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Heart className="w-3.5 h-3.5 text-primary" />
+              <div className="absolute bottom-16 -left-2 z-20 bg-white rounded-[16px] shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-3 flex items-center gap-2 animate-float">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Heart className="w-4 h-4 text-primary" />
                 </div>
                 <div className="text-xs font-bold text-heading leading-tight">
                   Mais de 1.500<br />pacientes atendidos!
                 </div>
               </div>
-
-              {/* Circle background */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[72%] aspect-square rounded-full bg-gradient-to-tr from-white/60 to-white/20" />
-
-              <img
-                src={HERO_IMAGE}
-                alt="Dr. Jorge Mendonça — Ortopedista e Traumatologista"
-                className="relative z-10 w-full h-full object-contain object-bottom hero-glow"
-              />
             </div>
           </div>
         </div>
